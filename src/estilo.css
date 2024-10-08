@@ -91,3 +91,25 @@ nav a:hover::before {
 .navbar-item a:hover {
   text-decoration: underline;
 }
+
+.image-container {
+  position: relative;
+  display: inline-block; /* Asegura que el contenedor se ajuste al tamaño de la imagen */
+}
+
+.image {
+  display: block; /* Elimina el espacio debajo de la imagen */
+  width:1200px; 
+  height:300px;
+}
+
+.text-overlay {
+  position: absolute; /* Permite posicionar el texto encima de la imagen */
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta para que el texto esté realmente centrado */
+  color: white; /* Color del texto */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  padding: 10px; /* Espaciado alrededor del texto */
+  border-radius: 5px; /* Bordes redondeados opcional */
+}

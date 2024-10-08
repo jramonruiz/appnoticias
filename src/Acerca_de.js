@@ -27,7 +27,7 @@ return (
                 <li>React Js 18.0</li>
                 <li>React-dom-router</li>
                 <li>Axios</li>
-                <li>Consumiendo la API de accuweather</li>
+                <li>Consumiendo la API de Gnews</li>
             </ul>
         </p>
     </div>
