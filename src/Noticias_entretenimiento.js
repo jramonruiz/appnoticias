@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 
-export function Ultimas_noticias () {
+export function Noticias_entretenimiento () {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null); 
@@ -10,9 +10,9 @@ export function Ultimas_noticias () {
     const [titulos, setTitulos] = useState([]);
 
     useEffect(() => {
-        const fetchUltimas_noticias = async () => {
+        const fetchNoticias_entrenimiento = async () => {
             try {
-                const response = await axios.get(`https://gnews.io/api/v4/top-headlines?category=general&lang=es&apikey=0916952f5281314fd60dcb8b93736b61`);
+                const response = await axios.get(`https://gnews.io/api/v4/top-headlines?category=entertainment&lang=es&apikey=0916952f5281314fd60dcb8b93736b61`);
                 setData(response.data); // Guardar datos de clima   
                 console.log('entrando a la api');  
                 console.log(response.data);
@@ -44,7 +44,7 @@ export function Ultimas_noticias () {
             }
         };
   
-        fetchUltimas_noticias(); // Llamar a la función para obtener datos
+        fetchNoticias_entrenimiento(); // Llamar a la función para obtener datos
 
     }, []); // Ejecutar solo al montar el componente    
     
@@ -54,7 +54,7 @@ export function Ultimas_noticias () {
           <td>&nbsp;</td>
         </tr>
         <tr>
-              <td align="center" colspan="2"><span className='valor'>ULTIMAS NOTICIAS</span></td>
+              <td align="center" colspan="2"><span className='valor'>NOTICIAS ENTRETENIMIENTO</span></td>
         </tr>
         {titulos.map(titulo => (
           <tr key={titulo.id}>
@@ -79,5 +79,4 @@ export function Ultimas_noticias () {
     );
 }
 
-export default Ultimas_noticias
-
+export default Noticias_entretenimiento
