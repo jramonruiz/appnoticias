@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 export function Ultimas_noticias () {
@@ -8,30 +9,38 @@ export function Ultimas_noticias () {
 
     //const [ultimas_noticias, setUltimas_noticias] = useState([]);
     const [titulos, setTitulos] = useState([]);
+    const [contenidonoticias, setContenidonoticias] = useState([]);
 
     useEffect(() => {
         const fetchUltimas_noticias = async () => {
             try {
-                const response = await axios.get(`https://gnews.io/api/v4/top-headlines?category=general&lang=es&apikey=0916952f5281314fd60dcb8b93736b61`);
+                const response = await axios.get(`https://gnews.io/api/v4/top-headlines?category=general&lang=es&country=mx&apikey=0916952f5281314fd60dcb8b93736b61`);
                 setData(response.data); // Guardar datos de clima   
                 console.log('entrando a la api');  
                 console.log(response.data);
                 //const total_articulos = response.data.length;
                 //console.log('numero de articulos que trae el json'+total_articulos);
                 const ftitulos = [];
+                const fcontenidonoticias = [];
                 let i = 0; // Comenzamos desde 1
                     while (i < 10) 
                         {  
                             const titulo_noticia=response.data.articles[i].title;
                             const imagen_noticia=response.data.articles[i].image;
                             const description=response.data.articles[i].description;
+                            const contenido=response.data.articles[i].content;
                             const published_total=response.data.articles[i].publishedAt;
                             const palabras_fecha = published_total.split("T"); // Divide la cadena en palabras
                             const published=palabras_fecha[0];
 
                             ftitulos.push({ id: i, titulo_noticia: titulo_noticia, imagen_noticia: imagen_noticia, 
-                                description: description, published: published });
+                                description: description, published: published, contenido: contenido });
+
+                            fcontenidonoticias.push({ id: i, titulo_noticia: titulo_noticia, contenido: contenido, 
+                                    description: description, published: published });   
+
                             setTitulos(ftitulos);
+                            setContenidonoticias(fcontenidonoticias);
                             i++;
                         }
             } catch (err) {
@@ -47,6 +56,17 @@ export function Ultimas_noticias () {
         fetchUltimas_noticias(); // Llamar a la función para obtener datos
 
     }, []); // Ejecutar solo al montar el componente    
+
+    //console.log(titulos[0]);
+
+    //const noticiascompletas=titulos; // Este es un ejemplo de parámetro que quieres enviar.
+
+    //const noticiascompletas = encodeURIComponent(JSON.stringify(contenidonoticias));
+    //const jsonData = {id:1, name:"Elemento 1", description:"Descripción del elemento"};
+    //const noticiascompletas = encodeURIComponent(JSON.stringify(jsonData));
+
+    //console.log(jsonData);
+
     
     return (        
         <table width="100%">
@@ -70,7 +90,7 @@ export function Ultimas_noticias () {
                         <span className='descripcion'>{titulo.description}</span></p>    
                 <p className="texto_temperatura_diario">
                         <span className='publicado'>Publicado: {titulo.published}</span></p>    
-                <button className="btn btn-danger">Ver mas..</button>
+                <Link to={`/detalle_noticia?titulo=`+titulo.titulo_noticia+`&descripcion=`+titulo.description+`&imagen=`+titulo.imagen_noticia+`&contenido=`+titulo.contenido+``}><button className="btn btn-danger">Ver mas..</button></Link>
                 </div>
             </td>
           </tr>

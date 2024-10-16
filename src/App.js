@@ -7,6 +7,7 @@ import Noticias_entretenimiento from './Noticias_entretenimiento';
 import Noticias_deportes from './Noticias_deportes';
 import Noticias_ciencia from './Noticias_ciencia';
 import Noticias_salud from './Noticias_salud';
+import Detalle_noticia from './Detalle_noticia';
 
 import './estilo.css';
 
@@ -47,6 +48,7 @@ const App = () => {
                     <Route path="/noticias_ciencia" component={Noticias_ciencia} />
                     <Route path="/noticias_salud" component={Noticias_salud} />
                     <Route path="/acerca_de" component={Acerca_de} />
+                    <Route path="/detalle_noticia" component={Detalle_noticia} />
                 </Switch>
             </div>
         </Router>
